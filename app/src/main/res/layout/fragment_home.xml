@@ -1,0 +1,121 @@
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    tools:context="com.example.farooqi.movieapp.fragments.HomeFragment">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background"
+        android:orientation="vertical">
+
+        <com.daimajia.slider.library.SliderLayout
+            android:id="@+id/slider_layout_home_frag"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_slider" />
+
+        <View style="@style/ViewDivider" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/all_margin_10_dp"
+            android:background="@color/background">
+
+            <TextView
+                android:id="@+id/lbl_see_all_theater_home"
+                style="@style/SubHeading_Tabs"
+                android:layout_alignBaseline="@id/lbl_hd_theaters_home"
+                android:text="@string/see_all" />
+
+            <TextView
+                android:id="@+id/lbl_hd_theaters_home"
+                style="@style/Heading"
+                android:text="@string/in_theaters" />
+
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rec_view_theater_home"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/lbl_hd_theaters_home"/>
+        </RelativeLayout>
+
+        <View style="@style/ViewDivider" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/all_margin_10_dp">
+
+            <TextView
+                android:id="@+id/lbl_see_all_com_soon_home"
+                style="@style/SubHeading_Tabs"
+                android:layout_alignBaseline="@id/lbl_hd_com_soon_home"
+                android:text="@string/see_all" />
+
+            <TextView
+                android:id="@+id/lbl_hd_com_soon_home"
+                style="@style/Heading"
+                android:text="@string/coming_soon"
+                />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rec_view_com_soon_home"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/lbl_hd_com_soon_home" />
+        </RelativeLayout>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:cardElevation="4dp"
+            android:layout_margin="@dimen/all_margin_8_dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/tabColor">
+
+                <TextView
+                    android:id="@+id/lbl_hd_home"
+                    style="@style/Heading"
+                    android:text="@string/follow_movie_app"
+                    android:layout_margin="@dimen/all_margin_10_dp"/>
+
+                <android.support.design.widget.FloatingActionButton
+                    android:id="@+id/fab_fb_home"
+                    app:fabSize="normal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/lbl_hd_home"
+                    android:layout_margin="@dimen/all_margin_10_dp"
+                    android:src="@drawable/ic_fb"
+                    app:backgroundTint="@color/colorWhite"
+                    />
+
+                <android.support.design.widget.FloatingActionButton
+                    android:id="@+id/fab_twi_home"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:fabSize="normal"
+                    android:layout_toRightOf="@id/fab_fb_home"
+                    android:layout_toEndOf="@id/fab_fb_home"
+                    android:layout_below="@id/lbl_hd_home"
+                    android:layout_margin="@dimen/all_margin_10_dp"
+                    android:src="@drawable/ic_twi"
+                    app:backgroundTint="@color/colorWhite" />
+
+
+            </RelativeLayout>
+
+        </android.support.v7.widget.CardView>
+
+    </LinearLayout>
+
+</android.support.v4.widget.NestedScrollView>

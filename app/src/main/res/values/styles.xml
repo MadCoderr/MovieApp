@@ -1,0 +1,50 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+
+    // Divider
+    <style name="ViewDivider">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">@color/colorWhite</item>
+    </style>
+
+    // For Label Heading
+    <style name="Heading">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/lbl_hd_25_sp</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:padding">@dimen/all_pad_5_dp</item>
+    </style>
+
+    // For Label SubHeading For Fragment's Tabs
+    <style name="SubHeading_Tabs">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/lbl_sub_hd_16_sp</item>
+        <item name="android:textColor">@color/colorBlue</item>
+        <item name="android:layout_alignParentRight">true</item>
+    </style>
+
+    <style name="SubHeading_Detail" parent="SubHeading_Tabs">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/lbl_sub_hd_16_sp</item>
+        <item name="android:textColor">@color/colorWhite</item>
+    </style>
+    <style name="DesText">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_margin">@dimen/all_margin_10_dp</item>
+        <item name="android:textColor">@color/colorWhite</item>
+    </style>
+
+</resources>

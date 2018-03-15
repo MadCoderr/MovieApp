@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import com.example.farooqi.movieapp.R;
 import com.example.farooqi.movieapp.activities.DetailActivity;
-import com.example.farooqi.movieapp.data.FakeData;
+import com.example.farooqi.movieapp.data.Preferences;
 import com.example.farooqi.movieapp.data.pojo.MovieModel;
 import com.squareup.picasso.Picasso;
 
@@ -68,7 +68,9 @@ public class TheaterAdapter extends RecyclerView.Adapter<TheaterAdapter.TheaterH
 
         @Override
         public void onClick(View view) {
+            MovieModel movie = movieList.get(getAdapterPosition());
             Intent intent = new Intent(context, DetailActivity.class);
+            intent.putExtra(Preferences.MOVIE_ID_KEY, movie.getMovieId());
             if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP) {
                 context.startActivity(intent);
             } else {

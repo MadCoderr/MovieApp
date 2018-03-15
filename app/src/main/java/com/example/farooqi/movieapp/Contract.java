@@ -10,6 +10,19 @@ import java.util.ArrayList;
 
 public interface Contract {
 
-    void onTheatreMoviesObtain(ArrayList<MovieModel> theatreMovies);
-    void onFailure(String message);
+    interface onTheaterMovie {
+        void onTheaterMoviesObtain(ArrayList<MovieModel> theatreMovies);
+        void onFailure(String message);
+    }
+
+    interface onUpComingMovie {
+        void onUpComingMoviesObtain(ArrayList<MovieModel> upComingMovies);
+        void onFailure(String message);
+    }
+
+    interface onMovieDetail {
+        void onMovieDetailsSuccess();
+        void onFailure(String message);
+    }
+
 }

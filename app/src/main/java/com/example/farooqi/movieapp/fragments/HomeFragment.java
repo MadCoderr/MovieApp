@@ -2,18 +2,14 @@ package com.example.farooqi.movieapp.fragments;
 
 
 import android.content.Context;
-import android.database.Cursor;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.daimajia.slider.library.SliderLayout;
 import com.example.farooqi.movieapp.Contract;
@@ -66,24 +62,34 @@ public class HomeFragment extends Fragment {
         setLayoutManager(theaterRecycler);
         setLayoutManager(comingRecycler);
 
-
-        cAdapter = new ComingAdapter(context, FakeData.getFakeData());
-        comingRecycler.setAdapter(cAdapter);
-
-        NetworkUtils.getTheathreMovies(new Contract() {
+        NetworkUtils.getTheaterMovies(new Contract.onTheaterMovie() {
             @Override
-            public void onTheatreMoviesObtain(ArrayList<MovieModel> theatreMovies) {
-                Log.d("home_frag", theatreMovies.toString());
+            public void onTheaterMoviesObtain(ArrayList<MovieModel> theatreMovies) {
+                Log.d("home_frag","fromTheater" + theatreMovies.toString());
                 tAdapter = new TheaterAdapter(context, theatreMovies);
                 theaterRecycler.setAdapter(tAdapter);
             }
 
             @Override
             public void onFailure(String message) {
-               Log.d("home_frag", message);
+               Log.d("home_frag","fromTheater" + message);
             }
         });
 
+
+        NetworkUtils.getUpComingMovies(new Contract.onUpComingMovie() {
+            @Override
+            public void onUpComingMoviesObtain(ArrayList<MovieModel> upComingMovies) {
+                Log.d("home_frag","fromUpComing" + upComingMovies.toString());
+                cAdapter = new ComingAdapter(context, upComingMovies);
+                comingRecycler.setAdapter(cAdapter);
+            }
+
+            @Override
+            public void onFailure(String message) {
+                Log.i("home_frag", "fromUpComing: " + message);
+            }
+        });
 
         return v;
     }

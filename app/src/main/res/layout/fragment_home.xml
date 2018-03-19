@@ -29,11 +29,11 @@
             <TextView
                 android:id="@+id/lbl_see_all_theater_home"
                 style="@style/SubHeading_Tabs"
-                android:layout_alignBaseline="@id/lbl_hd_theaters_home"
+                android:layout_alignBaseline="@id/lbl_hd_cast_detail"
                 android:text="@string/see_all" />
 
             <TextView
-                android:id="@+id/lbl_hd_theaters_home"
+                android:id="@+id/lbl_hd_cast_detail"
                 style="@style/Heading"
                 android:text="@string/in_theaters" />
 
@@ -42,7 +42,7 @@
                 android:id="@+id/rec_view_theater_home"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_below="@id/lbl_hd_theaters_home"/>
+                android:layout_below="@id/lbl_hd_cast_detail"/>
         </RelativeLayout>
 
         <View style="@style/ViewDivider" />

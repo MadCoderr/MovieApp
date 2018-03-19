@@ -5,6 +5,8 @@ import android.util.Log;
 import com.example.farooqi.movieapp.Contract;
 import com.example.farooqi.movieapp.data.FetchDataFromResponse;
 import com.example.farooqi.movieapp.data.Preferences;
+import com.example.farooqi.movieapp.data.pojo.CastModel;
+import com.example.farooqi.movieapp.data.pojo.MovieDetailModel;
 import com.example.farooqi.movieapp.data.pojo.MovieModel;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
@@ -97,8 +99,36 @@ public class NetworkUtils {
 
     }
 
-    public static void getMovieDetails() {
+    public static void getMovieDetails(String url, final Contract.onMovieDetail listener) {
+        reqClient.get(url, new JsonHttpResponseHandler(){
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                Log.i("network_utils", "movie Detail: " + response.toString());
+                try {
+                    MovieDetailModel model = FetchDataFromResponse.getMovieDetailFromResone(response);
+                    JSONArray array = response.getJSONObject("credits").getJSONArray("cast");
+                    ArrayList<CastModel> list = FetchDataFromResponse.getCastDetailFromResponse(array);
+                    listener.onMovieDetailsSuccess(model, list);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
 
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+               listener.onFailure(throwable.getMessage());
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONArray errorResponse) {
+                listener.onFailure(throwable.getMessage());
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+                listener.onFailure(throwable.getMessage());
+            }
+        });
     }
 
 }

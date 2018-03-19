@@ -1,5 +1,7 @@
 package com.example.farooqi.movieapp;
 
+import com.example.farooqi.movieapp.data.pojo.CastModel;
+import com.example.farooqi.movieapp.data.pojo.MovieDetailModel;
 import com.example.farooqi.movieapp.data.pojo.MovieModel;
 
 import java.util.ArrayList;
@@ -21,7 +23,7 @@ public interface Contract {
     }
 
     interface onMovieDetail {
-        void onMovieDetailsSuccess();
+        void onMovieDetailsSuccess(MovieDetailModel detail, ArrayList<CastModel> castList);
         void onFailure(String message);
     }
 

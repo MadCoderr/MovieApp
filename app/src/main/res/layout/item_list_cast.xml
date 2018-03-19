@@ -8,7 +8,7 @@
     android:orientation="vertical">
 
     <ImageView
-        android:id="@+id/img_coming_soon"
+        android:id="@+id/img_cast"
         android:layout_width="@dimen/img_width_item"
         android:layout_height="@dimen/img_height_item"
         tools:src="@color/colorAccent"
@@ -19,22 +19,30 @@
         android:layout_height="match_parent"
         android:background="@color/tabColor">
 
-        <ImageView
-            android:id="@+id/img_rate_cast"
-            android:layout_width="@dimen/icon_rate__width_20_dp"
-            android:layout_height="@dimen/icon_rate_height_20_dp"
-            android:src="@android:drawable/btn_star"
-            android:layout_margin="@dimen/all_margin_10_dp"/>
-
         <TextView
-            android:id="@+id/lbl_rate_coming_soon"
+            android:id="@+id/lbl_cast_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/colorWhite"
-            android:text="@string/dummy_vote"
-            android:layout_toRightOf="@id/img_rate_cast"
-            android:layout_toEndOf="@id/img_rate_cast"
-            android:layout_alignBottom="@id/img_rate_cast"/>
+            android:layout_marginTop="@dimen/all_margin_8_dp"
+            android:layout_marginLeft="@dimen/all_margin_8_dp"
+            android:layout_marginStart="@dimen/all_margin_8_dp"
+            tools:text="Brad Pitt"
+            android:textSize="15sp"
+            android:textColor="@color/colorWhite"/>
+
+        <TextView
+            android:id="@+id/lbl_cast_name_role"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Jhon Cena"
+            android:layout_marginLeft="@dimen/all_margin_8_dp"
+            android:layout_marginStart="@dimen/all_margin_8_dp"
+            android:layout_below="@id/lbl_cast_name"
+            android:textSize="12sp"
+            android:textColor="@color/colorWhite"/>
+
+
+
     </RelativeLayout>
 
 </LinearLayout>

@@ -18,5 +18,10 @@
     <string name="country_of_origin">Country Of Origin</string>
     <string name="language_spoken">Language Spoken</string>
     <string name="cast">Cast:</string>
+    <string name="title">Title</string>
+    <string name="tagline">Tagline</string>
+    <string name="genres">Genres</string>
+    <string name="home_page">HomePage</string>
+    <string name="top_billed_cast">Top Billed Cast</string>
 
 </resources>

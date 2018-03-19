@@ -20,7 +20,7 @@
         android:background="@color/tabColor">
 
         <ImageView
-            android:id="@+id/img_rate_coming_soon"
+            android:id="@+id/img_rate_cast"
             android:layout_width="@dimen/icon_rate__width_20_dp"
             android:layout_height="@dimen/icon_rate_height_20_dp"
             android:src="@android:drawable/btn_star"
@@ -32,9 +32,9 @@
             android:layout_height="wrap_content"
             android:textColor="@color/colorWhite"
             android:text="@string/dummy_vote"
-            android:layout_toRightOf="@id/img_rate_coming_soon"
-            android:layout_toEndOf="@id/img_rate_coming_soon"
-            android:layout_alignBottom="@id/img_rate_coming_soon"/>
+            android:layout_toRightOf="@id/img_rate_cast"
+            android:layout_toEndOf="@id/img_rate_cast"
+            android:layout_alignBottom="@id/img_rate_cast"/>
     </RelativeLayout>
 
 </LinearLayout>

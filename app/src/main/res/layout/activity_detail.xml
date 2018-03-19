@@ -20,18 +20,20 @@
                 android:id="@+id/img_detail"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:src="@color/colorBlue" />
+                android:src="@color/colorBlue"
+                android:adjustViewBounds="true"
+                android:scaleType="fitXY"/>
 
             <ImageView
                 android:id="@+id/img_fav_detail"
                 android:layout_width="@dimen/width_50_dp"
                 android:layout_height="@dimen/height_50_dp"
                 android:layout_alignBottom="@id/img_detail"
-                android:layout_alignRight="@id/img_detail"
                 android:layout_alignEnd="@id/img_detail"
-                android:paddingRight="@dimen/all_pad_10_dp"
+                android:layout_alignRight="@id/img_detail"
                 android:paddingLeft="@dimen/all_pad_10_dp"
-                android:src="@drawable/ic_fav"/>
+                android:paddingRight="@dimen/all_pad_10_dp"
+                android:src="@drawable/ic_fav" />
         </RelativeLayout>
 
 
@@ -39,7 +41,7 @@
             android:id="@+id/lbl_title_detail"
             style="@style/Heading"
             android:layout_margin="@dimen/all_margin_10_dp"
-            android:text="Title" />
+            tools:text="@string/title" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -51,14 +53,14 @@
                 style="@style/SubHeading_Detail"
                 android:layout_marginLeft="@dimen/left_margin_15_dp"
                 android:layout_marginStart="@dimen/left_margin_15_dp"
-                android:text="2017" />
+                tools:text="2017" />
 
             <TextView
                 android:id="@+id/lbl_time_detail"
                 style="@style/SubHeading_Detail"
                 android:layout_marginLeft="@dimen/left_margin_15_dp"
                 android:layout_marginStart="@dimen/left_margin_15_dp"
-                android:text="1:30hr" />
+                tools:text="1:30hr" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -78,7 +80,7 @@
                 <TextView
                     android:id="@+id/lbl_rate_detail"
                     style="@style/SubHeading_Detail"
-                    android:text="7/10" />
+                    tools:text="7/10" />
             </LinearLayout>
         </LinearLayout>
 
@@ -87,7 +89,8 @@
             android:layout_height="match_parent"
             android:layout_margin="@dimen/all_margin_16_dp"
             android:background="@color/colorAccent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            tools:visibility="gone">
 
             <TextView
                 android:id="@+id/lbl_hd_story_detail"
@@ -98,15 +101,61 @@
                 android:id="@+id/lbl_sub_hd_desc_detail"
                 style="@style/SubHeading_Detail"
                 android:padding="@dimen/all_pad_5_dp"
-                android:text="@string/descriptionn" />
+                android:text="@string/plot_summary" />
 
             <TextView
                 android:id="@+id/lbl_desc_detail"
                 style="@style/DesText"
-                android:text="@string/dummy_text"
-                />
+                tools:text="@string/dummy_text" />
+
+            <TextView
+                android:id="@+id/lbl_sub_hd_desc_tag_line"
+                style="@style/SubHeading_Detail"
+                android:text="@string/tagline"
+                android:padding="@dimen/all_pad_5_dp"/>
+
+            <TextView
+                android:id="@+id/lbl_desc_tag_line"
+                style="@style/DesText"
+                tools:text="Long live the king"/>
+
+            <TextView
+                android:id="@+id/lbl_sub_hd_desc_genre"
+                style="@style/SubHeading_Detail"
+                android:text="@string/genres"
+                android:padding="@dimen/all_pad_5_dp"/>
+
+            <TextView
+                android:id="@+id/lbl_desc_genre"
+                style="@style/DesText"
+                tools:text="Action Adventure Comedy"/>
 
         </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/all_margin_10_dp"
+            android:background="@color/background">
+
+            <TextView
+                android:id="@+id/lbl_see_all_cast_detail"
+                style="@style/SubHeading_Tabs"
+                android:layout_alignBaseline="@id/lbl_hd_cast_detail"
+                android:text="@string/see_all" />
+
+            <TextView
+                android:id="@+id/lbl_hd_cast_detail"
+                style="@style/Heading"
+                android:text="@string/top_billed_cast" />
+
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rec_view_cast_detail"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/lbl_hd_cast_detail"/>
+        </RelativeLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -126,14 +175,24 @@
                 android:text="@string/release_data" />
 
             <TextView
+                android:id="@+id/lbl_desc_rel_date"
+                style="@style/DesText"
+                tools:text="12 Feb 2017"/>
+
+            <TextView
                 android:id="@+id/lbl_ori_hd_detail"
                 style="@style/SubHeading_Detail"
                 android:text="@string/country_of_origin" />
 
             <TextView
+                android:id="@+id/lbl_desc_origin"
+                style="@style/DesText"
+                tools:text="United State"/>
+
+            <TextView
                 android:id="@+id/lbl_lang_hd_detail"
                 style="@style/SubHeading_Detail"
-                android:text="@string/language_spoken" />
+                android:text="@string/home_page" />
 
         </LinearLayout>
 

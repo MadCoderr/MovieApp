@@ -12,6 +12,11 @@ import java.util.ArrayList;
 
 public interface Contract {
 
+    interface onPopularModel {
+        void onPopularListObtain(ArrayList<MovieModel> popularList);
+        void onFailure(String message);
+    }
+
     interface onTheaterMovie {
         void onTheaterMoviesObtain(ArrayList<MovieModel> theatreMovies);
         void onFailure(String message);
@@ -27,4 +32,8 @@ public interface Contract {
         void onFailure(String message);
     }
 
+    interface onSeeAllClick{
+        void onTaskSuccess(ArrayList<MovieModel> movieList);
+        void onFailure(String message);
+    }
 }

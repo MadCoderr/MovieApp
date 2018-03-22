@@ -25,6 +25,7 @@ public class CategoryActivity extends AppCompatActivity {
         adapter = new CustomAdapter(this);
         recycler.setLayoutManager(new LinearLayoutManager(this));
         recycler.setAdapter(adapter);
+
     }
 
     private class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomViewHolder> {

@@ -1,8 +1,6 @@
 package com.example.farooqi.movieapp.activities;
 
-import android.Manifest;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -10,6 +8,8 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,17 +18,25 @@ import com.example.farooqi.movieapp.R;
 import com.example.farooqi.movieapp.data.Preferences;
 import com.example.farooqi.movieapp.data.pojo.CastModel;
 import com.example.farooqi.movieapp.data.pojo.MovieDetailModel;
-import com.example.farooqi.movieapp.data.pojo.MovieModel;
 import com.example.farooqi.movieapp.data.utils.remote.NetworkUtils;
+import com.google.android.youtube.player.YouTubeBaseActivity;
+import com.google.android.youtube.player.YouTubeInitializationResult;
+import com.google.android.youtube.player.YouTubePlayer;
+import com.google.android.youtube.player.YouTubePlayerView;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-public class DetailActivity extends AppCompatActivity {
+public class DetailActivity extends YouTubeBaseActivity {
 
     ImageView moviePoster;
     TextView movieTitle, movieYear, movieTime, movieRate, movieOverView,
             movieTagLine, movieGenres, movieRelease, movieCountry;
+
+
+    YouTubePlayerView playerView;
+    RelativeLayout relative;
+    LinearLayout linearLayout;
 
     RecyclerView castRecycler;
     CastAdapter adapter;
@@ -49,8 +57,11 @@ public class DetailActivity extends AppCompatActivity {
         movieRelease = findViewById(R.id.lbl_desc_rel_date);
         movieCountry = findViewById(R.id.lbl_desc_origin);
         castRecycler = findViewById(R.id.rec_view_cast_detail);
+        playerView = findViewById(R.id.player_view);
+        relative = findViewById(R.id.rel_layout_detail);
+        linearLayout = findViewById(R.id.linear_layout_detail);
 
-        LinearLayoutManager linear = new LinearLayoutManager(this);
+        final LinearLayoutManager linear = new LinearLayoutManager(this);
         linear.setOrientation(LinearLayoutManager.HORIZONTAL);
         castRecycler.setLayoutManager(linear);
 
@@ -62,6 +73,7 @@ public class DetailActivity extends AppCompatActivity {
                 @Override
                 public void onMovieDetailsSuccess(MovieDetailModel detail, ArrayList<CastModel> castList) {
                     Log.i("detail_activity", "onMovieDetail called");
+                    linearLayout.setVisibility(View.VISIBLE);
                     setDetailViews(detail);
                     adapter = new CastAdapter(castList);
                     castRecycler.setAdapter(adapter);
@@ -79,11 +91,34 @@ public class DetailActivity extends AppCompatActivity {
 
     }
 
-    private void setDetailViews(MovieDetailModel model) {
+    private void setDetailViews(final MovieDetailModel model) {
         Picasso
                 .with(DetailActivity.this)
                 .load(model.getPosterPath())
                 .into(moviePoster);
+
+        moviePoster.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                relative.setVisibility(View.GONE);
+                playerView.setVisibility(View.VISIBLE);
+
+                playerView.initialize(Preferences.API_KEY,
+                        new YouTubePlayer.OnInitializedListener() {
+                    @Override
+                    public void onInitializationSuccess(YouTubePlayer.Provider provider,
+                                                        YouTubePlayer youTubePlayer, boolean b) {
+                        youTubePlayer.loadVideo(model.videoKey);
+                    }
+
+                    @Override
+                    public void onInitializationFailure(YouTubePlayer.Provider provider,
+                                                        YouTubeInitializationResult result) {
+
+                    }
+                });
+            }
+        });
 
         movieTitle.setText(model.title);
         movieYear.setText(model.releaseDate);

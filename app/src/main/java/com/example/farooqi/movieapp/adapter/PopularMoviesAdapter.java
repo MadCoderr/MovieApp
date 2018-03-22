@@ -19,29 +19,29 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 
 /**
- * Created by SAMSUNG on 3/9/2018.
+ * Created by SAMSUNG on 3/22/2018.
  */
 
-public class TheaterAdapter extends RecyclerView.Adapter<TheaterAdapter.TheaterHolder> {
+public class PopularMoviesAdapter
+        extends RecyclerView.Adapter<PopularMoviesAdapter.PopularViewHolder> {
 
     Context context;
     ArrayList<MovieModel> movieList;
 
-    public TheaterAdapter(Context context, ArrayList<MovieModel> list) {
+    public PopularMoviesAdapter(Context context, ArrayList<MovieModel> movieList) {
         this.context = context;
         this.movieList = new ArrayList<>();
-        movieList.addAll(list);
+        this.movieList.addAll(movieList);
     }
 
     @Override
-    public TheaterHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        LayoutInflater inflater = LayoutInflater.from(context);
-        View v = inflater.inflate(R.layout.item_list_movies, parent, false);
-        return new TheaterHolder(v);
+    public PopularViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(context).inflate(R.layout.item_list_movies, parent, false);
+        return new PopularViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(TheaterHolder holder, int position) {
+    public void onBindViewHolder(PopularViewHolder holder, int position) {
         MovieModel model = movieList.get(position);
         holder.movieRating.setText(String.valueOf(model.getVoteAverage()));
         Picasso
@@ -57,17 +57,17 @@ public class TheaterAdapter extends RecyclerView.Adapter<TheaterAdapter.TheaterH
         return movieList.size();
     }
 
-    public class TheaterHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class PopularViewHolder extends RecyclerView.ViewHolder
+            implements View.OnClickListener {
 
         ImageView moviePoster;
         TextView movieRating;
 
-        public TheaterHolder(View itemView) {
+        public PopularViewHolder(View itemView) {
             super(itemView);
 
             moviePoster = itemView.findViewById(R.id.img_movie_poster);
             movieRating = itemView.findViewById(R.id.lbl_rate_movie);
-            itemView.setOnClickListener(this);
         }
 
         @Override

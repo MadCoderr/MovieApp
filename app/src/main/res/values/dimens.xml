@@ -11,11 +11,13 @@
     <dimen name="icon_rate__width_20_dp">20dp</dimen>
     <dimen name="icon_rate_height_20_dp">20dp</dimen>
     <dimen name="all_margin_8_dp">8dp</dimen>
-    <dimen name="height_200_dp">400dp</dimen>
+    <dimen name="height_200_dp">200dp</dimen>
     <dimen name="left_margin_15_dp">15dp</dimen>
     <dimen name="width_100_dp">100dp</dimen>
     <dimen name="all_margin_16_dp">16dp</dimen>
     <dimen name="all_pad_10_dp">10dp</dimen>
     <dimen name="width_50_dp">50dp</dimen>
     <dimen name="height_50_dp">50dp</dimen>
+    <dimen name="height_280_dp">280dp</dimen>
+    <dimen name="height_60_dp">60dp</dimen>
 </resources>

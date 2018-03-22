@@ -131,4 +131,66 @@ public class NetworkUtils {
         });
     }
 
+
+    public static void getPopularListOfModel(final Contract.onPopularModel listener) {
+        final ArrayList<MovieModel> list = new ArrayList<>();
+        reqClient.get(Preferences.POPULAR_MOVIE_URL_ONE, new JsonHttpResponseHandler(){
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                try {
+                    JSONArray array = response.getJSONArray("results");
+                    list.addAll(FetchDataFromResponse.getMovieDataFromResponse(array));
+                    listener.onPopularListObtain(list);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                listener.onFailure(throwable.getMessage());
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONArray errorResponse) {
+                listener.onFailure(throwable.getMessage());
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+                listener.onFailure(throwable.getMessage());
+            }
+        });
+    }
+
+    public static void getAWholeListOfMovies(String url, final Contract.onSeeAllClick listener) {
+        final ArrayList<MovieModel> movieList = new ArrayList<>();
+        reqClient.get(url, new JsonHttpResponseHandler(){
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                try {
+                    JSONArray array = response.getJSONArray("results");
+                    movieList.addAll(FetchDataFromResponse.getMovieDataFromResponse(array));
+                    listener.onTaskSuccess(movieList);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                listener.onFailure(throwable.getMessage());
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONArray errorResponse) {
+                listener.onFailure(throwable.getMessage());
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+                listener.onFailure(throwable.getMessage());
+            }
+        });
+    }
 }

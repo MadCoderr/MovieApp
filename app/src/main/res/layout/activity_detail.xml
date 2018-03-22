@@ -8,13 +8,22 @@
     tools:context="com.example.farooqi.movieapp.activities.DetailActivity">
 
     <LinearLayout
+        android:id="@+id/linear_layout_detail"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:visibility="invisible">
+
+        <com.google.android.youtube.player.YouTubePlayerView
+            android:id="@+id/player_view"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_280_dp"
+            android:visibility="gone"/>
 
         <RelativeLayout
+            android:id="@+id/rel_layout_detail"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/height_200_dp">
+            android:layout_height="@dimen/height_280_dp">
 
             <ImageView
                 android:id="@+id/img_detail"
@@ -23,6 +32,13 @@
                 android:src="@color/colorBlue"
                 android:adjustViewBounds="true"
                 android:scaleType="fitXY"/>
+
+            <ImageView
+                android:id="@+id/img_player_icon_detail"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/youtube_social_icon_dark"
+                android:layout_centerInParent="true"/>
 
             <ImageView
                 android:id="@+id/img_fav_detail"
@@ -141,11 +157,11 @@
             <TextView
                 android:id="@+id/lbl_see_all_cast_detail"
                 style="@style/SubHeading_Tabs"
-                android:layout_alignBaseline="@id/lbl_hd_cast_detail"
+                android:layout_alignBaseline="@id/lbl_hd_popular_home"
                 android:text="@string/see_all" />
 
             <TextView
-                android:id="@+id/lbl_hd_cast_detail"
+                android:id="@+id/lbl_hd_popular_home"
                 style="@style/Heading"
                 android:text="@string/top_billed_cast" />
 
@@ -154,7 +170,7 @@
                 android:id="@+id/rec_view_cast_detail"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_below="@id/lbl_hd_cast_detail"/>
+                android:layout_below="@id/lbl_hd_popular_home"/>
         </RelativeLayout>
 
         <LinearLayout

@@ -16,7 +16,7 @@
         <com.daimajia.slider.library.SliderLayout
             android:id="@+id/slider_layout_home_frag"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/height_slider" />
+            android:layout_height="@dimen/height_280_dp" />
 
         <View style="@style/ViewDivider" />
 
@@ -24,33 +24,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="@dimen/all_margin_10_dp"
-            android:background="@color/background">
-
-            <TextView
-                android:id="@+id/lbl_see_all_theater_home"
-                style="@style/SubHeading_Tabs"
-                android:layout_alignBaseline="@id/lbl_hd_cast_detail"
-                android:text="@string/see_all" />
-
-            <TextView
-                android:id="@+id/lbl_hd_cast_detail"
-                style="@style/Heading"
-                android:text="@string/in_theaters" />
-
-
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/rec_view_theater_home"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_below="@id/lbl_hd_cast_detail"/>
-        </RelativeLayout>
-
-        <View style="@style/ViewDivider" />
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="@dimen/all_margin_10_dp">
+            tools:visibility="gone">
 
             <TextView
                 android:id="@+id/lbl_see_all_com_soon_home"
@@ -61,8 +35,7 @@
             <TextView
                 android:id="@+id/lbl_hd_com_soon_home"
                 style="@style/Heading"
-                android:text="@string/coming_soon"
-                />
+                android:text="@string/coming_soon" />
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rec_view_com_soon_home"
@@ -71,11 +44,67 @@
                 android:layout_below="@id/lbl_hd_com_soon_home" />
         </RelativeLayout>
 
+        <View style="@style/ViewDivider" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/all_margin_10_dp"
+            android:background="@color/background"
+            tools:visibility="gone">
+
+            <TextView
+                android:id="@+id/lbl_see_all_theater_home"
+                style="@style/SubHeading_Tabs"
+                android:layout_alignBaseline="@id/lbl_hd_theater_home"
+                android:text="@string/see_all" />
+
+            <TextView
+                android:id="@+id/lbl_hd_theater_home"
+                style="@style/Heading"
+                android:text="@string/in_theaters" />
+
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rec_view_theater_home"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/lbl_hd_theater_home" />
+        </RelativeLayout>
+
+        <View style="@style/ViewDivider" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/all_margin_10_dp"
+            android:background="@color/background"
+            >
+
+            <TextView
+                android:id="@+id/lbl_see_all_popular_home"
+                style="@style/SubHeading_Tabs"
+                android:layout_alignBaseline="@id/lbl_hd_popular_home"
+                android:text="@string/see_all" />
+
+            <TextView
+                android:id="@+id/lbl_hd_popular_home"
+                style="@style/Heading"
+                android:text="@string/most_popular" />
+
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rec_view_popular_home"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/lbl_hd_popular_home" />
+        </RelativeLayout>
+
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:cardElevation="4dp"
-            android:layout_margin="@dimen/all_margin_8_dp">
+            android:layout_margin="@dimen/all_margin_8_dp"
+            app:cardElevation="4dp">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -85,31 +114,30 @@
                 <TextView
                     android:id="@+id/lbl_hd_home"
                     style="@style/Heading"
-                    android:text="@string/follow_movie_app"
-                    android:layout_margin="@dimen/all_margin_10_dp"/>
+                    android:layout_margin="@dimen/all_margin_10_dp"
+                    android:text="@string/follow_movie_app" />
 
                 <android.support.design.widget.FloatingActionButton
                     android:id="@+id/fab_fb_home"
-                    app:fabSize="normal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/lbl_hd_home"
                     android:layout_margin="@dimen/all_margin_10_dp"
                     android:src="@drawable/ic_fb"
                     app:backgroundTint="@color/colorWhite"
-                    />
+                    app:fabSize="normal" />
 
                 <android.support.design.widget.FloatingActionButton
                     android:id="@+id/fab_twi_home"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:fabSize="normal"
-                    android:layout_toRightOf="@id/fab_fb_home"
-                    android:layout_toEndOf="@id/fab_fb_home"
                     android:layout_below="@id/lbl_hd_home"
                     android:layout_margin="@dimen/all_margin_10_dp"
+                    android:layout_toEndOf="@id/fab_fb_home"
+                    android:layout_toRightOf="@id/fab_fb_home"
                     android:src="@drawable/ic_twi"
-                    app:backgroundTint="@color/colorWhite" />
+                    app:backgroundTint="@color/colorWhite"
+                    app:fabSize="normal" />
 
 
             </RelativeLayout>

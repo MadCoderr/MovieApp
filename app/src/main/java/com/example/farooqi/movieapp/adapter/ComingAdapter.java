@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,18 +32,20 @@ public class ComingAdapter extends RecyclerView.Adapter<ComingAdapter.ComingView
 
     @Override
     public ComingViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(context).inflate(R.layout.item_list_commig_soon, parent, false);
+        View v = LayoutInflater.from(context).inflate(R.layout.item_list_movies, parent, false);
         return new ComingViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(ComingViewHolder holder, int position) {
-        MovieModel data = movieList.get(position);
-        Picasso.with(context)
-                .load(data.getPosterPath())
-                .into(holder.itemImage);
-
-        Log.d("coming_adapter", data.getTitle());
+        MovieModel model = movieList.get(position);
+        holder.movieRating.setText(String.valueOf(model.getVoteAverage()));
+        Picasso
+                .with(context)
+                .load(model.getPosterPath())
+                .placeholder(R.drawable.movie_placeholder)
+                .error(R.drawable.no_image_found)
+                .into(holder.moviePoster);
 
     }
 
@@ -55,13 +56,13 @@ public class ComingAdapter extends RecyclerView.Adapter<ComingAdapter.ComingView
 
     public class ComingViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
-        ImageView itemImage;
-        TextView itemRating;
+        ImageView moviePoster;
+        TextView movieRating;
 
         public ComingViewHolder(View itemView) {
             super(itemView);
-            itemImage = itemView.findViewById(R.id.img_coming_soon);
-            itemRating = itemView.findViewById(R.id.lbl_rate_coming_soon);
+            moviePoster = itemView.findViewById(R.id.img_movie_poster);
+            movieRating = itemView.findViewById(R.id.lbl_rate_movie);
             itemView.setOnClickListener(this);
         }
 

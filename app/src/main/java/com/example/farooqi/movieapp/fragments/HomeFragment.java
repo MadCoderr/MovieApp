@@ -3,6 +3,7 @@ package com.example.farooqi.movieapp.fragments;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -158,6 +159,11 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 break;
         }
 
-        context.startActivity(intent);
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP) {
+            context.startActivity(intent);
+        } else {
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(intent);
+        }
     }
 }

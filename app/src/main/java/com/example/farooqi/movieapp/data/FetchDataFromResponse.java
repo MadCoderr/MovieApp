@@ -54,7 +54,7 @@ public class FetchDataFromResponse {
     public static MovieDetailModel getMovieDetailFromResone(JSONObject object) throws JSONException {
         int movieId = object.getInt("id");
         int voteCount = object.getInt("vote_count");
-        int runTime = object.getInt("runtime");
+        int runTime = object.isNull("runtime") ? 0 : object.getInt("runtime");
         double voteAverage = object.getDouble("vote_average");
         double popularity = object.getDouble("popularity");
         String title = object.getString("original_title");

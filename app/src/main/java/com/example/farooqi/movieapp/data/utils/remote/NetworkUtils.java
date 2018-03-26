@@ -32,50 +32,15 @@ public class NetworkUtils {
     }
 
 
-    public static void getTheaterMovies(final Contract.onTheaterMovie listener) {
-        String url = Preferences.IN_THEATRE_MOVIE_URL_ONE;
-        final ArrayList<MovieModel> theaterList = new ArrayList<>();
-        reqClient.get(url, new JsonHttpResponseHandler() {
-            @Override
-            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                try {
-                    JSONArray array = response.getJSONArray("results");
-                    theaterList.addAll(FetchDataFromResponse.getMovieDataFromResponse(array));
-                    listener.onTheaterMoviesObtain(theaterList);
-                    Log.i("network", theaterList.toString());
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-
-            @Override
-            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
-                listener.onFailure(throwable.getMessage());
-            }
-
-            @Override
-            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONArray errorResponse) {
-                listener.onFailure(throwable.getMessage());
-            }
-
-            @Override
-            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
-                listener.onFailure(throwable.getMessage());
-            }
-        });
-    }
-
-
-    public static void getUpComingMovies(final Contract.onUpComingMovie listener) {
-        String url = Preferences.IN_COMMING_MOVIE_URL_ONE;
-        final ArrayList<MovieModel> upComingList = new ArrayList<>();
+    public static void getListOfMovies(String url, final Contract.onMovieSuccess listener) {
+        final ArrayList<MovieModel> list = new ArrayList<>();
         reqClient.get(url, new JsonHttpResponseHandler(){
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 try {
                     JSONArray array = response.getJSONArray("results");
-                    upComingList.addAll(FetchDataFromResponse.getMovieDataFromResponse(array));
-                    listener.onUpComingMoviesObtain(upComingList);
+                    list.addAll(FetchDataFromResponse.getMovieDataFromResponse(array));
+                    listener.onTaskListener(list);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -96,7 +61,6 @@ public class NetworkUtils {
                 listener.onFailure(throwable.getMessage());
             }
         });
-
     }
 
     public static void getMovieDetails(String url, final Contract.onMovieDetail listener) {
@@ -105,7 +69,7 @@ public class NetworkUtils {
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 Log.i("network_utils", "movie Detail: " + response.toString());
                 try {
-                    MovieDetailModel model = FetchDataFromResponse.getMovieDetailFromResone(response);
+                    MovieDetailModel model = FetchDataFromResponse.getMovieDetailFromResponse(response);
                     JSONArray array = response.getJSONObject("credits").getJSONArray("cast");
                     ArrayList<CastModel> list = FetchDataFromResponse.getCastDetailFromResponse(array);
                     listener.onMovieDetailsSuccess(model, list);
@@ -131,37 +95,6 @@ public class NetworkUtils {
         });
     }
 
-
-    public static void getPopularListOfModel(final Contract.onPopularModel listener) {
-        final ArrayList<MovieModel> list = new ArrayList<>();
-        reqClient.get(Preferences.POPULAR_MOVIE_URL_ONE, new JsonHttpResponseHandler(){
-            @Override
-            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                try {
-                    JSONArray array = response.getJSONArray("results");
-                    list.addAll(FetchDataFromResponse.getMovieDataFromResponse(array));
-                    listener.onPopularListObtain(list);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-
-            @Override
-            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
-                listener.onFailure(throwable.getMessage());
-            }
-
-            @Override
-            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONArray errorResponse) {
-                listener.onFailure(throwable.getMessage());
-            }
-
-            @Override
-            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
-                listener.onFailure(throwable.getMessage());
-            }
-        });
-    }
 
     public static void getAWholeListOfMovies(String url, final Contract.onSeeAllClick listener) {
         final ArrayList<MovieModel> movieList = new ArrayList<>();
@@ -193,4 +126,5 @@ public class NetworkUtils {
             }
         });
     }
+
 }

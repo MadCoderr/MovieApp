@@ -25,14 +25,14 @@ public class FetchDataFromResponse {
             try {
                 JSONObject object = array.getJSONObject(i);
 
-                int movieId = object.getInt("id");
-                int voteCount = object.getInt("vote_count");
-                double voteAverage = object.getDouble("vote_average");
-                double popularity  = object.getDouble("popularity");
-                String title = object.getString("title");
-                String posterPath = object.getString("poster_path");
-                String overView = object.getString("overview");
-                String releaseDate = object.getString("release_date");
+                int movieId = object.isNull("id") ? 0 :object.getInt("id");
+                int voteCount = object.isNull("vote_count") ? 0: object.getInt("vote_count");
+                double voteAverage = object.isNull("vote_average") ? 0 : object.getDouble("vote_average");
+                double popularity  = object.isNull("popularity") ? 0 : object.getDouble("popularity");
+                String title = object.isNull("title") ? "" : object.getString("title");
+                String posterPath = object.isNull("poster_path") ? "" : object.getString("poster_path");
+                String overView = object.isNull("overview") ? "" :object.getString("overview");
+                String releaseDate = object.isNull("release_date") ? "" :object.getString("release_date");
 
                 JSONArray arr = object.getJSONArray("genre_ids");
                 int[] genreId = new int[arr.length()];
@@ -51,33 +51,35 @@ public class FetchDataFromResponse {
     }
 
 
-    public static MovieDetailModel getMovieDetailFromResone(JSONObject object) throws JSONException {
-        int movieId = object.getInt("id");
-        int voteCount = object.getInt("vote_count");
+    public static MovieDetailModel getMovieDetailFromResponse(JSONObject object) throws JSONException {
+        int movieId = object.isNull("id") ? 0 : object.getInt("id");
+        int voteCount = object.isNull("vote_count") ? 0 : object.getInt("vote_count");
         int runTime = object.isNull("runtime") ? 0 : object.getInt("runtime");
-        double voteAverage = object.getDouble("vote_average");
-        double popularity = object.getDouble("popularity");
-        String title = object.getString("original_title");
-        String imdbId = object.getString("imdb_id");
-        String posterPath = object.getString("poster_path");
-        String overView = object.getString("overview");
-        String releaseDate = object.getString("release_date");
-        String homePage = object.getString("homepage");
-        String status = object.getString("status");
-        String tagLine = object.getString("tagline");
+        double voteAverage = object.isNull("vote_average") ? 0 : object.getDouble("vote_average");
+        double popularity = object.isNull("popularity") ? 0 :object.getDouble("popularity");
+        String title = object.isNull("original_title") ? "" : object.getString("original_title");
+        String imdbId = object.isNull("imdb_id") ? "" :object.getString("imdb_id");
+        String posterPath = object.isNull("poster_path") ? "" : object.getString("poster_path");
+        String overView = object.isNull("overview") ? "" : object.getString("overview");
+        String releaseDate = object.isNull("release_date") ? "" : object.getString("release_date");
+        String homePage = object.isNull("homepage") ? "" : object.getString("homepage");
+        String status = object.isNull("status") ?  "": object.getString("status");
+        String tagLine = object.isNull("tagline") ? "" :object.getString("tagline");
 
-        JSONArray genreArray = object.getJSONArray("genres");
-        String[] genres = getObjectsFromJsonArray(genreArray);
+        JSONArray genreArray = object.isNull("genres") ? null : object.getJSONArray("genres");
+        String[] genres = genreArray == null ? null : getObjectsFromJsonArray(genreArray);
 
-        JSONArray countryArray = object.getJSONArray("production_countries");
-        String[] countries = getObjectsFromJsonArray(countryArray);
+        JSONArray countryArray = object.isNull("production_countries") ?
+                null : object.getJSONArray("production_countries");
+        String[] countries = countryArray == null ? null : getObjectsFromJsonArray(countryArray);
 
-        JSONArray companyArray = object.getJSONArray("production_companies");
-        String[] companies = getObjectsFromJsonArray(companyArray);
+        JSONArray companyArray = object.isNull("production_companies") ?
+                null : object.getJSONArray("production_companies");
+        String[] companies = companyArray == null ? null : getObjectsFromJsonArray(companyArray);
 
 
         JSONArray videoArray = object.getJSONObject("videos").getJSONArray("results");
-        String videoKey = videoArray.getJSONObject(0).getString("key");
+        String videoKey = videoArray == null ? null : videoArray.getJSONObject(0).getString("key");
         Log.i("fetch_data", "video key: " + videoKey);
 
         return new MovieDetailModel(
@@ -102,12 +104,12 @@ public class FetchDataFromResponse {
         ArrayList<CastModel> castList = new ArrayList<>();
         for (int i = 0 ; i < array.length(); i++) {
             JSONObject object = array.getJSONObject(i);
-            int castId = object.getInt("cast_id");
-            int id = object.getInt("id");
-            String character = object.getString("character");
-            String name = object.getString("name");
-            String creditId = object.getString("credit_id");
-            String profilePath = object.getString("profile_path");
+            int castId = object.isNull("cast_id") ? 0 : object.getInt("cast_id");
+            int id = object.isNull("id") ? 0 :object.getInt("id");
+            String character = object.isNull("character") ? "" :object.getString("character");
+            String name = object.isNull("name") ? "" :object.getString("name");
+            String creditId = object.isNull("credit_id") ? "" : object.getString("credit_id");
+            String profilePath = object.isNull("profile_path") ? "" :object.getString("profile_path");
 
             castList.add(new CastModel(
                castId, id, character, name, creditId, profilePath

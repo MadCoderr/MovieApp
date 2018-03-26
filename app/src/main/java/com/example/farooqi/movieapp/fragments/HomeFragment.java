@@ -81,53 +81,57 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         setLayoutManager(comingRecycler);
         setLayoutManager(popularRecycler);
 
-        NetworkUtils.getPopularListOfModel(new Contract.onPopularModel() {
-            @Override
-            public void onPopularListObtain(ArrayList<MovieModel> popularList) {
-                sliderAdapter = new SliderAdapter(context, popularList);
-                sliderAdapter.setSliderLayout(sliderLayout);
+        // for popular movies
+        NetworkUtils.getListOfMovies(Preferences.POPULAR_MOVIE_URL_ONE,
+                new Contract.onMovieSuccess() {
+                    @Override
+                    public void onTaskListener(ArrayList<MovieModel> movieList) {
+                        sliderAdapter = new SliderAdapter(context, movieList);
+                        sliderAdapter.setSliderLayout(sliderLayout);
 
-                pAdapter = new PopularMoviesAdapter(context, popularList);
-                popularRecycler.setAdapter(pAdapter);
-            }
+                        pAdapter = new PopularMoviesAdapter(context, movieList);
+                        popularRecycler.setAdapter(pAdapter);
+                    }
 
-            @Override
-            public void onFailure(String message) {
-                Log.i("home_frag", "fromPopular: " + message);
-                showToast(message);
-            }
-        });
+                    @Override
+                    public void onFailure(String message) {
+                        Log.i("home_frag", "fromPopular: " + message);
+                        showToast(message);
+                    }
+                });
 
-        NetworkUtils.getTheaterMovies(new Contract.onTheaterMovie() {
-            @Override
-            public void onTheaterMoviesObtain(ArrayList<MovieModel> theatreMovies) {
-                Log.d("home_frag","fromTheater" + theatreMovies.toString());
-                tAdapter = new TheaterAdapter(context, theatreMovies);
-                theaterRecycler.setAdapter(tAdapter);
-            }
+       // for upcoming movies
+        NetworkUtils.getListOfMovies(Preferences.IN_COMMING_MOVIE_URL_ONE,
+                new Contract.onMovieSuccess() {
+                    @Override
+                    public void onTaskListener(ArrayList<MovieModel> movieList) {
+                        cAdapter = new ComingAdapter(context, movieList);
+                        comingRecycler.setAdapter(cAdapter);
+                    }
 
-            @Override
-            public void onFailure(String message) {
-               Log.d("home_frag","fromTheater" + message);
-                showToast(message);
-            }
-        });
+                    @Override
+                    public void onFailure(String message) {
+                        Log.i("home_frag", "fromUpComing: " + message);
+                        showToast(message);
+                    }
+                });
 
+        // for in theater movies
+       NetworkUtils.getListOfMovies(Preferences.IN_THEATRE_MOVIE_URL_ONE,
+               new Contract.onMovieSuccess() {
+                   @Override
+                   public void onTaskListener(ArrayList<MovieModel> movieList) {
+                       Log.d("home_frag","fromTheater" + movieList.toString());
+                       tAdapter = new TheaterAdapter(context, movieList);
+                       theaterRecycler.setAdapter(tAdapter);
+                   }
 
-        NetworkUtils.getUpComingMovies(new Contract.onUpComingMovie() {
-            @Override
-            public void onUpComingMoviesObtain(ArrayList<MovieModel> upComingMovies) {
-                Log.d("home_frag","fromUpComing" + upComingMovies.toString());
-                cAdapter = new ComingAdapter(context, upComingMovies);
-                comingRecycler.setAdapter(cAdapter);
-            }
-
-            @Override
-            public void onFailure(String message) {
-                Log.i("home_frag", "fromUpComing: " + message);
-                showToast(message);
-            }
-        });
+                   @Override
+                   public void onFailure(String message) {
+                       Log.d("home_frag","fromTheater" + message);
+                       showToast(message);
+                   }
+               });
 
         return v;
     }

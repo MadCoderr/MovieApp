@@ -128,13 +128,16 @@ public class DetailActivity extends YouTubeBaseActivity {
         movieTagLine.setText(model.tagLine);
         movieRelease.setText(model.releaseDate);
 
-        for (int i = 0; i < model.genreName.length; i++) {
-            movieGenres.append(model.genreName[i] + " ");
+        if (model.genreName != null) {
+            for (int i = 0; i < model.genreName.length; i++) {
+                movieGenres.append(model.genreName[i] + " ");
+            }
         }
 
-
-        for (int i = 0; i < model.countries.length; i++) {
-            movieCountry.append(model.countries[i] + " ");
+        if (model.countries != null) {
+            for (int i = 0; i < model.countries.length; i++) {
+                movieCountry.append(model.countries[i] + " ");
+            }
         }
     }
 
@@ -160,6 +163,8 @@ public class DetailActivity extends YouTubeBaseActivity {
             Picasso
                     .with(DetailActivity.this)
                     .load(model.getProfilePath())
+                    .placeholder(R.drawable.person_placeholder)
+                    .error(R.drawable.no_image_found)
                     .into(holder.castImage);
 
             holder.castName.setText(model.name);

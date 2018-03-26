@@ -12,18 +12,8 @@ import java.util.ArrayList;
 
 public interface Contract {
 
-    interface onPopularModel {
-        void onPopularListObtain(ArrayList<MovieModel> popularList);
-        void onFailure(String message);
-    }
-
-    interface onTheaterMovie {
-        void onTheaterMoviesObtain(ArrayList<MovieModel> theatreMovies);
-        void onFailure(String message);
-    }
-
-    interface onUpComingMovie {
-        void onUpComingMoviesObtain(ArrayList<MovieModel> upComingMovies);
+    interface onMovieSuccess {
+        void onTaskListener(ArrayList<MovieModel> movieList);
         void onFailure(String message);
     }
 
@@ -36,4 +26,5 @@ public interface Contract {
         void onTaskSuccess(ArrayList<MovieModel> movieList);
         void onFailure(String message);
     }
+
 }
